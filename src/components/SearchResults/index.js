@@ -11,7 +11,6 @@ const SearchResults = () => {
   const { loading, error, results, nextBatch } = useSelector(
     searchResultsSelector
   );
-  console.log(error);
   const dispatch = useDispatch();
 
   const onSeeMore = () => {
