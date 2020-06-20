@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.js": "/sw-searching-for-the-one/static/js/main.4c979c8f.chunk.js",
+    "main.js.map": "/sw-searching-for-the-one/static/js/main.4c979c8f.chunk.js.map",
+    "runtime-main.js": "/sw-searching-for-the-one/static/js/runtime-main.aa521992.js",
+    "runtime-main.js.map": "/sw-searching-for-the-one/static/js/runtime-main.aa521992.js.map",
+    "static/js/2.a5d90187.chunk.js": "/sw-searching-for-the-one/static/js/2.a5d90187.chunk.js",
+    "static/js/2.a5d90187.chunk.js.map": "/sw-searching-for-the-one/static/js/2.a5d90187.chunk.js.map",
+    "index.html": "/sw-searching-for-the-one/index.html",
+    "precache-manifest.b2543c5d47769cb71116db0e11be3fd7.js": "/sw-searching-for-the-one/precache-manifest.b2543c5d47769cb71116db0e11be3fd7.js",
+    "service-worker.js": "/sw-searching-for-the-one/service-worker.js",
+    "static/js/2.a5d90187.chunk.js.LICENSE.txt": "/sw-searching-for-the-one/static/js/2.a5d90187.chunk.js.LICENSE.txt",
+    "static/media/logo.png": "/sw-searching-for-the-one/static/media/logo.a7c35735.png",
+    "static/media/soloist.otf": "/sw-searching-for-the-one/static/media/soloist.05255a61.otf",
+    "static/media/star-jedi.ttf": "/sw-searching-for-the-one/static/media/star-jedi.cc3019aa.ttf",
+    "static/media/star-wars-background.jpg": "/sw-searching-for-the-one/static/media/star-wars-background.a04075d2.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.aa521992.js",
+    "static/js/2.a5d90187.chunk.js",
+    "static/js/main.4c979c8f.chunk.js"
+  ]
+}
