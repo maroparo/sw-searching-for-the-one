@@ -8,11 +8,13 @@ const SeeMoreSection = (props) => {
   const { loading, onSeeMore, error, initialSearch } = props;
   return (
     <SeeMoreItem initialSearch={initialSearch}>
-      {!loading && <span onClick={onSeeMore}>Search on other planets</span>}
-      {(loading || error.length > 1) && (
+      {!loading && !error && (
+        <span onClick={onSeeMore}>Search on other planets</span>
+      )}
+      {(loading || error) && (
         <Loading
           dark={!initialSearch}
-          isLoading={initialSearch}
+          isLoading={initialSearch && !error}
           feedback={loading ? "Searching some other planets..." : error}
         />
       )}
@@ -23,7 +25,7 @@ const SeeMoreSection = (props) => {
 SeeMoreSection.propTypes = {
   loading: PropTypes.bool.isRequired,
   onSeeMore: PropTypes.func.isRequired,
-  error: PropTypes.string,
+  error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   initialSearch: PropTypes.bool.isRequired,
 };
 

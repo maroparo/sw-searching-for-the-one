@@ -11,6 +11,7 @@ const SearchResults = () => {
   const { loading, error, results, nextBatch } = useSelector(
     searchResultsSelector
   );
+  console.log(error);
   const dispatch = useDispatch();
 
   const onSeeMore = () => {
@@ -31,7 +32,7 @@ const SearchResults = () => {
             />
           );
         })}
-        {(nextBatch || loading) && (
+        {(nextBatch || loading || error) && (
           <SeeMoreItem
             initialSearch={results.length === 0}
             key="see-more"

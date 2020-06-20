@@ -56,7 +56,7 @@ export default (state = initialState, action) => {
         storageOngoingRequests: state.storageOngoingRequests - 1,
       };
     case SEARCH_FOR_CHARACTER_ERROR:
-      return { ...state, searchError: action.error, searchOngoing: false };
+      return { ...state, searchError: action.message, searchOngoing: false };
     case SEARCH_FOR_CHARACTER_SUCCESS:
       return {
         ...state,

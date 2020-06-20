@@ -123,6 +123,8 @@ export const searchCharacter = (searchTerm, nextBatch = null) => {
           dispatch(searchCharacterSuccess(response));
         }
       })
-      .catch((error) => dispatch(searchCharacterError(error)));
+      .catch((error) => {
+        dispatch(searchCharacterError(error));
+      });
   };
 };

@@ -113,6 +113,12 @@ const searchForCharacter = (searchTerm, resolve, reject, nextBatch) => {
         const movies = getFromStorage("movies");
         const planets = getFromStorage("planets");
         const species = getFromStorage("species");
+        if (response.data.results.length === 0) {
+          reject(
+            "Searched the universe but could not find anyone named like that!"
+          );
+          return;
+        }
         const charactersResult = response.data.results.map((character) => {
           const characterSpecies = character.species.map((speciesUrl) => {
             const speciesIndex = species.findIndex(
@@ -150,9 +156,7 @@ const searchForCharacter = (searchTerm, resolve, reject, nextBatch) => {
       }
     })
     .catch((error) => {
-      reject(
-        `Something went wrong while fetching the movies!\n${error.message}`
-      );
+      reject(`The search party encountered some issue!\n${error.message}`);
     });
 };
 

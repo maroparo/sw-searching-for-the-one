@@ -16,7 +16,7 @@ export const searchResultsSelector = createSelector(
   (state) => state.nextBatchOfResults,
   (ongoingSearch, error, searchResults, nextBatch) => ({
     loading: ongoingSearch,
-    error,
+    error: error.length > 1 ? error : false,
     results: searchResults,
     nextBatch,
   })
