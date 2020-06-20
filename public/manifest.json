@@ -1,0 +1,25 @@
+{
+  "short_name": "SW Searching for The One",
+  "name": "Search for your favourite character in the Star Wars universe.",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo152.png",
+      "type": "image/png",
+      "sizes": "192x192 152x152"
+    },
+    {
+      "src": "logo310.png",
+      "type": "image/png",
+      "sizes": "512x512 310x310"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
