@@ -2,7 +2,7 @@ import axios from "axios";
 import { getFromStorage } from "utils/storage";
 import { formatToRomanNumber } from "utils/helpers";
 
-const baseUrl = "https://swapi.dev/api";
+const baseUrl = process.env.SWAPI_ENDPOINT;
 
 const extractEntityIdFromUrl = (url) => {
   const urlExploded = url.split("/");
@@ -126,6 +126,7 @@ const searchForCharacter = (searchTerm, resolve, reject, nextBatch) => {
             );
             return species[speciesIndex].name;
           });
+
           const movieAppearances = character.films
             .map((movieUrl) => {
               const movieIndex = movies.findIndex(
