@@ -19,5 +19,6 @@ export const searchResultsSelector = createSelector(
     error: error.length > 1 ? error : false,
     results: searchResults,
     nextBatch,
+    hasMore: nextBatch !== null,
   })
 );

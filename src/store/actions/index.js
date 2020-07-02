@@ -59,9 +59,7 @@ export const searchForMoreCharactersSuccess = (results) => ({
 export const getMovies = () => {
   return function (dispatch) {
     dispatch(increaseStorageOngoingRequests());
-    new Promise((resolve, reject) => {
-      API.getAllMovies([], resolve, reject);
-    })
+    API.getAllMovies([])
       .then((response) => {
         putInStorage("movies", response);
         dispatch(getMoviesSuccess(response));
@@ -73,9 +71,7 @@ export const getMovies = () => {
 export const getPlanets = () => {
   return function (dispatch) {
     dispatch(increaseStorageOngoingRequests());
-    new Promise((resolve, reject) => {
-      API.getAllPlanets([], resolve, reject);
-    })
+    API.getAllPlanets([])
       .then((response) => {
         putInStorage("planets", response);
         dispatch(getPlanetsSuccess(response));
@@ -87,9 +83,7 @@ export const getPlanets = () => {
 export const getSpecies = () => {
   return function (dispatch) {
     dispatch(increaseStorageOngoingRequests());
-    new Promise((resolve, reject) => {
-      API.getAllSpecies([], resolve, reject);
-    })
+    API.getAllSpecies([])
       .then((response) => {
         putInStorage("species", response);
         dispatch(getSpeciesSuccess(response));
@@ -113,9 +107,7 @@ export const populateLocalStorage = () => {
 export const searchCharacter = (searchTerm, nextBatch = null) => {
   return function (dispatch) {
     dispatch(setSearchOngoing());
-    new Promise((resolve, reject) => {
-      API.searchForCharacter(searchTerm, resolve, reject, nextBatch);
-    })
+    API.searchForCharacter(searchTerm, nextBatch)
       .then((response) => {
         if (nextBatch) {
           dispatch(searchForMoreCharactersSuccess(response));

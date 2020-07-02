@@ -9,12 +9,7 @@ const extractEntityIdFromUrl = (url) => {
   return urlExploded[urlExploded.length - 2];
 };
 
-const getAllPlanets = (
-  planets,
-  resolve,
-  reject,
-  url = `${baseUrl}/planets`
-) => {
+const getAllPlanets = (planets, url = `${baseUrl}/planets`) =>
   axios
     .get(url)
     .then((response) => {
@@ -26,24 +21,17 @@ const getAllPlanets = (
         }))
       );
       if (response.data.next !== null) {
-        getAllPlanets(receivedPlanets, resolve, reject, response.data.next);
-      } else {
-        resolve(receivedPlanets);
+        const planetsAdded = planets.concat(receivedPlanets);
+        return getAllPlanets(planetsAdded, response.data.next);
       }
+      return Array.from(new Set(receivedPlanets));
     })
-    .catch((error) => {
-      reject(
+    .catch(
+      (error) =>
         `Something went wrong while fetching the planets!\n${error.message}`
-      );
-    });
-};
+    );
 
-const getAllSpecies = (
-  species,
-  resolve,
-  reject,
-  url = `${baseUrl}/species`
-) => {
+const getAllSpecies = (species, url = `${baseUrl}/species`) =>
   axios
     .get(url)
     .then((response) => {
@@ -55,19 +43,17 @@ const getAllSpecies = (
       );
 
       if (response.data.next !== null) {
-        getAllSpecies(receivedSpecies, resolve, reject, response.data.next);
-      } else {
-        resolve(receivedSpecies);
+        const speciesAdded = species.concat(receivedSpecies);
+        return getAllSpecies(speciesAdded, response.data.next);
       }
+      return Array.from(new Set(receivedSpecies));
     })
-    .catch((error) => {
-      reject(
+    .catch(
+      (error) =>
         `Something went wrong while fetching the species!\n${error.message}`
-      );
-    });
-};
+    );
 
-const getAllMovies = (movies, resolve, reject, url = `${baseUrl}/films`) => {
+const getAllMovies = (movies, url = `${baseUrl}/films`) =>
   axios
     .get(url)
     .then((response) => {
@@ -81,19 +67,17 @@ const getAllMovies = (movies, resolve, reject, url = `${baseUrl}/films`) => {
         }))
       );
       if (response.data.next !== null) {
-        getAllMovies(receivedMovies, resolve, reject, response.data.next);
-      } else {
-        resolve(receivedMovies);
+        const moviesAdded = movies.concat(receivedMovies);
+        return getAllMovies(moviesAdded, response.data.next);
       }
+      return Array.from(new Set(receivedMovies));
     })
-    .catch((error) => {
-      reject(
+    .catch(
+      (error) =>
         `Something went wrong while fetching the movies!\n${error.message}`
-      );
-    });
-};
+    );
 
-const searchForCharacter = (searchTerm, resolve, reject, nextBatch) => {
+const searchForCharacter = (searchTerm, nextBatch) =>
   axios
     .get(
       nextBatch
@@ -106,18 +90,13 @@ const searchForCharacter = (searchTerm, resolve, reject, nextBatch) => {
         !getFromStorage("movies") ||
         !getFromStorage("species")
       ) {
-        reject(
-          "Seems like the dark side got to some important data first.\nPlease refresh and try searching again!"
-        );
+        return "Seems like the dark side got to some important data first.\nPlease refresh and try searching again!";
       } else {
         const movies = getFromStorage("movies");
         const planets = getFromStorage("planets");
         const species = getFromStorage("species");
         if (response.data.results.length === 0) {
-          reject(
-            "Searched the universe but could not find anyone named like that!"
-          );
-          return;
+          return "Searched the universe but could not find anyone named like that!";
         }
         const charactersResult = response.data.results.map((character) => {
           const characterSpecies = character.species.map((speciesUrl) => {
@@ -150,16 +129,15 @@ const searchForCharacter = (searchTerm, resolve, reject, nextBatch) => {
             movieAppearances,
           };
         });
-        resolve({
+        return {
           charactersResult,
           nextBatch: response.data.next,
-        });
+        };
       }
     })
-    .catch((error) => {
-      reject(`The search party encountered some issue!\n${error.message}`);
-    });
-};
+    .catch(
+      (error) => `The search party encountered some issue!\n${error.message}`
+    );
 
 export default {
   getAllPlanets,
